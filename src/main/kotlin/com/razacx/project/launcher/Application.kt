@@ -15,11 +15,11 @@ fun main() {
     embeddedServer(
         factory = Netty,
         port = 8080,
-        module = Application::coreModule
+        module = Application::main
     ).start(wait = true)
 }
 
-fun Application.coreModule() {
+fun Application.main() {
     install(ContentNegotiation) {
         register(ContentType.Application.Json, JacksonConverter(jacksonObjectMapper()))
     }
