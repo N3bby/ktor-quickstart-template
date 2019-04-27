@@ -1,6 +1,5 @@
 package com.razacx.project
 
-import com.razacx.project.launcher.main
 import io.ktor.application.Application
 import io.ktor.server.testing.TestApplicationEngine
 import io.ktor.server.testing.withTestApplication
