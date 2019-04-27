@@ -1,5 +1,5 @@
 
 ### Todo list
 
-- Add persistence libraries (exposed + sqlite + h2?) and support it in tests
-- Dependency injection container
+- Add database migration framework
+- Move around parts of the code a bit so everything makes more sense

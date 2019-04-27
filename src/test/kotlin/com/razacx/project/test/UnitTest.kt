@@ -1,4 +1,4 @@
-package com.razacx.project
+package com.razacx.project.test
 
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
