@@ -1,5 +1,6 @@
 package com.razacx.project
 
+import com.razacx.project.config.createBeanDefinitions
 import com.razacx.project.test.UnitTest
 import org.junit.jupiter.api.Test
 import org.koin.dsl.koinApplication

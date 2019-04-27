@@ -2,6 +2,9 @@ package com.razacx.project.test
 
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.razacx.project.*
+import com.razacx.project.config.createBeanDefinitions
+import com.razacx.project.config.createObjectMapper
+import com.razacx.project.config.tables
 import io.ktor.application.Application
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
