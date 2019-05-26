@@ -35,7 +35,7 @@ open class IntegrationTest : UnitTest() {
     }
 
     protected fun post(application: TestApplicationEngine, route: String, body: String): TestApplicationResponse {
-        return with(application.handleRequest(HttpMethod.Post, "/note") {
+        return with(application.handleRequest(HttpMethod.Post, route) {
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
             setBody(body)
         }) { response }
