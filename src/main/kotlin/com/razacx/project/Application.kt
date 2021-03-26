@@ -1,6 +1,6 @@
 package com.razacx.project
 
-import com.razacx.project.config.createBeanDefinitions
+import com.razacx.project.config.createKoinModule
 import com.razacx.project.config.createObjectMapper
 import com.razacx.project.config.createOrUpdateTables
 import com.razacx.project.route.notesRoute
@@ -15,32 +15,32 @@ import io.ktor.server.netty.Netty
 import org.koin.Logger.slf4jLogger
 import org.koin.core.module.Module
 import org.koin.ktor.ext.Koin
+import org.koin.ktor.ext.get
 import org.koin.ktor.ext.inject
 
 fun main() {
-    beanDefinitions = createBeanDefinitions()
     embeddedServer(
         factory = Netty,
         port = 8080,
-        module = Application::main
+        module = createKtorModule(createKoinModule())
     ).start(wait = true)
 }
 
-// TODO Find a way to pass this to Application.main(). Mutability is bad
-var beanDefinitions: Module? = null
-
-fun Application.main() {
-    install(ContentNegotiation) {
-        register(ContentType.Application.Json, JacksonConverter(createObjectMapper()))
+fun createKtorModule(koinModule: Module): Application.() -> Unit {
+    fun Application.main() {
+        install(Koin) {
+            slf4jLogger()
+            modules(koinModule)
+        }
+        install(ContentNegotiation) {
+            register(ContentType.Application.Json, JacksonConverter(get()))
+        }
+        initDb()
+        routing {
+            notesRoute()
+        }
     }
-    install(Koin) {
-        slf4jLogger()
-        modules(beanDefinitions!!)
-    }
-    initDb()
-    routing {
-        notesRoute()
-    }
+    return Application::main
 }
 
 fun Application.initDb() {

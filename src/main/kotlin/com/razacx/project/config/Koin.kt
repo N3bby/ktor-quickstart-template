@@ -9,7 +9,8 @@ import com.razacx.project.domain.note.NoteRepositoryImpl
 import org.koin.dsl.module
 import org.koin.experimental.builder.singleBy
 
-fun createBeanDefinitions() = module(createdAtStart = true) {
+fun createKoinModule() = module(createdAtStart = true) {
+    single { createObjectMapper() }
     singleBy<DatabaseConnector, DataBaseConnectorImpl>()
     singleBy<NoteRepository, NoteRepositoryImpl>()
     singleBy<DateProvider, DateProviderImpl>()
