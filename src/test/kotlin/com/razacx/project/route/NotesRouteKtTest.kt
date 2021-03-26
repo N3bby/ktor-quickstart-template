@@ -11,7 +11,7 @@ import org.koin.ktor.ext.inject
 class NotesRouteKtTest : IntegrationTest() {
 
     @Test
-    fun `post creates note with random id and current timestamp`(): Unit = integrationTest {
+    fun `post creates note with random id and current timestamp, note can then be fetched with id`(): Unit = integrationTest {
         val dateProvider by application.inject<DateProvider>()
         val author = "some author"
         val message = "some message"
